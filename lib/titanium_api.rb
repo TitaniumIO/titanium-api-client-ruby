@@ -16,7 +16,7 @@ module TitaniumApi
 
   def self.get(opts={})
     path = self.client.base_path + opts[:path]
-    RestClient.get(path) { |response, request, result, &block| response }
+    RestClient.get(path, self.client.headers) { |response, request, result, &block| response }
   end
 
   def self.underscore_keys(json)
