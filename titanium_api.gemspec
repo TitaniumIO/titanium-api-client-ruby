@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency('activesupport', '>= 4.2.0')
   spec.add_runtime_dependency('rest-client', '~> 1.8.0')
   spec.add_runtime_dependency('virtus', '~> 1.0.1')
+  spec.add_runtime_dependency("byebug", "~> 3.5.1")
 
   spec.required_ruby_version = '>= 1.9.3'
 end

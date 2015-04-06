@@ -5,6 +5,7 @@ require 'active_support/inflector'
 
 require 'rest-client'
 require 'virtus'
+require 'byebug'
 
 require 'titanium_api/client'
 require 'titanium_api/models'
