@@ -47,6 +47,29 @@ module TitaniumApi
         return model
       end
 
+      def self.where(filters={})
+        model = nil
+
+        query_string = filters.map{|k,v| "filter[#{k}]=#{v}"}.join('&')
+        opts = {path: self.resource_path + "?" + URI.encode(query_string)}
+        response = TitaniumApi.get(opts)
+
+        if response.code == 200
+          json     = JSON.parse(response.body, {symbolize_names: true})
+          # convert all dasherized keys to underscored keys
+          resources = TitaniumApi.underscore_keys(json)
+
+          # map all resources to models
+          if !resources.nil? && resources.kind_of?(Array) then
+            model = self.new(resources.first)
+          end
+        else
+          raise "titanium.find returned a non-200 response:#{response.code}\n\n#{response}"
+        end
+
+        return model
+      end
+
     end # class BaseModel
   end # module Models
 end # module TitaniumApi
